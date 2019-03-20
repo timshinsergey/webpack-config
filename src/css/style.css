@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "OpenSans";
+    src: local("Open Sans"), local("Open Sans Bold"), local("OpenSans"), local("Open-Sans"),
+        url("../fonts/OpenSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+.hello {
+    background-color: red;
+    font-family: "OpenSans";
+    display: flex;
+    justify-content: flex-start;
+}

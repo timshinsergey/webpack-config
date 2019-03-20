@@ -22,35 +22,65 @@ module.exports = {
             template: './src/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[id].css'
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         })
     ],
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
                     'style-loader',
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'postcss-loader'
+                    'postcss-loader',
+                    'sass-loader'
                 ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[name].[ext]',
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    }
                 ]
             },
             {
                 test: /\.(ttf|eot|woff|woff2|otf)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'fonts/[name].[ext]'
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'fonts/[name].[ext]'
+                        }
                     }
-                }
+                ]
             },
             {
                 test: /\.(csv|tsv)$/,

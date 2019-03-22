@@ -1,9 +1,0 @@
-@import 'utils/fonts.css';
-@import 'components/some.css';
-
-.hello {
-    background-color: red;
-    font-family: "OpenSans";
-    display: flex;
-    justify-content: flex-start;
-}

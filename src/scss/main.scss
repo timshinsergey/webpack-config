@@ -1,0 +1,8 @@
+@import 'utils/normilize';
+@import 'utils/fonts';
+@import 'utils/common';
+@import 'components/some';
+$bg: yellow;
+body {
+	background: $bg url('../images/image.jpg') no-repeat 100%;
+}

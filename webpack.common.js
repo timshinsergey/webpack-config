@@ -4,37 +4,58 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
 
 module.exports = {
     entry: {
-        app: './src/index.js'
+        main: './src/main.js'
     },
     plugins: [
         new CleanWebpackPlugin(),
         new FaviconsWebpackPlugin({
             logo: './src/favicon.png',
-            prefix: 'favicons/',
+            prefix: 'favicons.[hash]/',
             persistentCache: true,
             background: '#fefefe'
         }),
         new HtmlWebpackPlugin({
-            title: 'Output Management',
-            template: './src/index.html'
+            filename: 'index.html',
+            template: './src/index.html',
+            hash: true,
+            inject: false
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css'
-        })
+            filename: '[name].[contenthash].css'
+        }),
+        new CompressionPlugin({
+            algorithm: 'gzip'
+        }),
+        new WebpackMd5Hash()
     ],
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
                     'style-loader',
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'postcss-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                path: './src/js/postcss.config.js'
+                            }
+                        }
+                    },
                     'sass-loader'
                 ]
             },
@@ -94,7 +115,8 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'js/[name].bundle.js',
+        filename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'chunks/[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     }
 }

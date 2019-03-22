@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
 </head>
 <body>
-    
+    <h1>hello, world!</h1>
+
+    <script async src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+    <noscript>
+        This site uses JavaScript. Please enable JavaScript in your browser.
+    </noscript>
 </body>
 </html>

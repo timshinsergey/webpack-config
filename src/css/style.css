@@ -1,10 +1,5 @@
-@font-face {
-    font-family: "OpenSans";
-    src: local("Open Sans"), local("Open Sans Bold"), local("OpenSans"), local("Open-Sans"),
-        url("../fonts/OpenSans-Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-}
+@import 'utils/fonts.css';
+@import 'components/some.css';
 
 .hello {
     background-color: red;

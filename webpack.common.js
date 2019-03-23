@@ -1,15 +1,16 @@
 const path = require('path')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') // generate html file
+const CleanWebpackPlugin = require('clean-webpack-plugin') // clean dist repository before assembly 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') // Import css code into a separate file
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin') // Faviocns generation
+const CompressionPlugin = require('compression-webpack-plugin') // gzip
 const WebpackMd5Hash = require('webpack-md5-hash')
 
 module.exports = {
     entry: {
-        main: './src/main.js'
+        main: './src/main.js',
+        some: './src/js/some.js'
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -33,6 +34,12 @@ module.exports = {
         }),
         new WebpackMd5Hash()
     ],
+    optimization: {
+        // To prevent duplicate dependencies in js
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     module: {
         rules: [
             {

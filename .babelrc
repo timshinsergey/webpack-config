@@ -1,6 +1,13 @@
 {
     "presets": [
-        "@babel/preset-env"
+        [
+            "@babel/preset-env",
+            {
+                "modules": false,
+                "loose": true,
+                "useBuiltIns": "usage"
+            }
+        ]
     ],
     "plugins": [
         "@babel/plugin-syntax-dynamic-import"

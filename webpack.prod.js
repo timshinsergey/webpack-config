@@ -122,11 +122,7 @@ module.exports = {
             algorithm: 'gzip'
         }),
         new WebpackMd5Hash(),
-        new webpack.HashedModuleIdsPlugin(),
-        new WorkboxPlugin.GenerateSW({
-            clientsClaim: true,
-            skipWaiting: true
-        })
+        new webpack.HashedModuleIdsPlugin()
     ],
     optimization: {
         minimizer: [

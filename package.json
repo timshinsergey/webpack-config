@@ -4,7 +4,7 @@
 	"description": "webpack configuration for fast startup",
 	"private": true,
 	"scripts": {
-		"dev": "http-server dist",
+		"dev": "webpack-dev-server --config webpack.dev.js",
 		"build": "webpack --config webpack.prod.js"
 	},
 	"keywords": [

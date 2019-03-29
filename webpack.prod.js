@@ -3,7 +3,6 @@
 const path = require('path')
 const root = path.resolve(__dirname, '.')
 
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin') // generate html file
 const CleanWebpackPlugin = require('clean-webpack-plugin') // clean dist repository before assembly
 const MiniCssExtractPlugin = require('mini-css-extract-plugin') // Import css code into a separate file
@@ -111,7 +110,6 @@ module.exports = {
 			filename: 'index.html',
 			template: './src/index.html',
 			hash: true,
-			// inject: false
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
@@ -120,7 +118,6 @@ module.exports = {
 			algorithm: 'gzip',
 		}),
 		new WebpackMd5Hash(),
-		new webpack.HashedModuleIdsPlugin(),
 	],
 	optimization: {
 		minimizer: [

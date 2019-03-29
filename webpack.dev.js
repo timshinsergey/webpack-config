@@ -123,7 +123,6 @@ module.exports = {
 			filename: 'index.html',
 			template: './src/index.html',
 			hash: true,
-			inject: false,
 		}),
 		new webpack.ProvidePlugin({
 			fetch:
